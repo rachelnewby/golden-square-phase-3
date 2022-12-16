@@ -18,4 +18,27 @@ describe MusicLibrary do
       expect(library.all).to eq [song_1, song_2]
     end
   end
+
+  context "When keyword is present in tracks" do
+    it "returns the track that matches the keyword" do
+      library = MusicLibrary.new
+      song_1 = FakeTrack_1.new
+      song_2 = FakeTrack_2.new
+      library.add(song_1)
+      library.add(song_2)
+      expect(library.search("sugar")).to eq [song_1, song_2]
+    end
+  end
+end
+ 
+class FakeTrack_1
+  def matches?(keyword)
+    return true
+  end
+end
+
+class FakeTrack_2
+  def matches?(keyword)
+    return true
+  end
 end
