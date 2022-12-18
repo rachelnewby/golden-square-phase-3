@@ -6,5 +6,10 @@ class SecretDiary
 
   def read
     fail "Go away!" if @locked == true
+    return @diary.read
+  end
+
+  def unlock
+    @locked = false
   end
 end
