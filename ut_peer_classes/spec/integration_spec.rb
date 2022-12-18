@@ -15,5 +15,13 @@ describe "Integration" do
       secret_diary.unlock
       expect(secret_diary.read).to eq "I don't like the cold"
     end
+
+    it "Secret_diary #read method throws error when unlocked and locked again" do
+      diary = Diary.new("I don't like the cold")
+      secret_diary = SecretDiary.new(diary)
+      secret_diary.unlock
+      secret_diary.lock
+      expect { secret_diary.read }.to raise_error "Go away!"
+    end
   end
 end

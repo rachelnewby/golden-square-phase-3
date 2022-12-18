@@ -9,6 +9,10 @@ class SecretDiary
     return @diary.read
   end
 
+  def lock
+    @locked = true
+  end
+
   def unlock
     @locked = false
   end

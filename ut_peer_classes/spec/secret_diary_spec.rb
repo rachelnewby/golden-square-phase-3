@@ -9,7 +9,7 @@ describe SecretDiary do
 
   context "When locked" do
     it "#read will throw an error 'Go away!'" do
-      diary = double(:fake_diary, contents: "Today, it is cold")
+      diary = double :fake_diary
       secret_diary = SecretDiary.new(diary)
       expect { secret_diary.read }.to raise_error "Go away!"
     end
@@ -21,6 +21,17 @@ describe SecretDiary do
       secret_diary = SecretDiary.new(diary)
       secret_diary.unlock
       expect(secret_diary.read).to eq "Today, it is cold"
+    end
+  end
+
+  context "When unlocked and locked again" do
+    it "#read will throw an error 'Go away!'" do
+      diary = double(:fake_diary, read: "Today, it is cold")
+      secret_diary = SecretDiary.new(diary)
+      secret_diary.unlock
+      expect(secret_diary.read).to eq "Today, it is cold"
+      secret_diary.lock
+      expect { secret_diary.read }.to raise_error "Go away!"
     end
   end
 end
