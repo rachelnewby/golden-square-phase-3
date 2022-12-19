@@ -22,4 +22,19 @@ RSpec.describe "tasks integration" do
     task_2.mark_complete
     expect(task_list.all_complete?).to eq true
   end
+
+  it "formats tasks complete with - [x]" do
+    task_list = TaskList.new
+    task_1 = Task.new("Walk the dog")
+    task_1.mark_complete
+    task_formatter = TaskFormatter.new(task_1)
+    expect(task_formatter.format).to eq "- [x] Walk the dog"
+  end
+
+  it "formats incomplete tasks with - [ ]" do
+    task_list = TaskList.new
+    task_1 = Task.new("Walk the dog")
+    task_formatter = TaskFormatter.new(task_1)
+    expect(task_formatter.format).to eq "- [ ] Walk the dog"
+  end
 end

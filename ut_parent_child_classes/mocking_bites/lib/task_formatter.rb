@@ -9,6 +9,6 @@ class TaskFormatter
     # - [ ] Task title
     # If the task is complete, the format is:
     # - [x] Task title
-    return @task.complete ? "- [x] #{@task.title}" : "- [ ] #{@task.title}"
+    return @task.complete? ? "- [x] #{@task.title}" : "- [ ] #{@task.title}"
   end
 end
