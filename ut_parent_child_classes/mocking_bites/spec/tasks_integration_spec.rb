@@ -1,5 +1,6 @@
 require "task_list"
 require "task"
+require 'task_formatter'
 
 RSpec.describe "tasks integration" do
   it "adds tasks to a list" do
